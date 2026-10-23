@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <!-- Barras de crescimento em verde menta (#5EEAB4) -->
+    <path
+        android:fillColor="#5EEAB4"
+        android:fillAlpha="0.65"
+        android:pathData="M192,292h22v76h-22z" />
+    <path
+        android:fillColor="#5EEAB4"
+        android:fillAlpha="0.80"
+        android:pathData="M242,252h22v116h-22z" />
+    <path
+        android:fillColor="#5EEAB4"
+        android:pathData="M292,208h22v160h-22z" />
+
+    <!-- Anel dourado da moeda (#FFD978) -->
+    <path
+        android:strokeColor="#FFD978"
+        android:strokeWidth="22"
+        android:strokeLineCap="round"
+        android:pathData="M342,205 A112,112 0 1,1 248,144" />
+
+    <!-- Seta ascendente dourada -->
+    <path
+        android:strokeColor="#FFD978"
+        android:strokeWidth="20"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M188,266 L246,214 L282,240 L358,158" />
+    <path
+        android:strokeColor="#FFD978"
+        android:strokeWidth="20"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M312,158 L358,158 L358,204" />
+</vector>

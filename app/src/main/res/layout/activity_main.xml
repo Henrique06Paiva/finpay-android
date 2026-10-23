@@ -1,0 +1,1278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_paper">
+
+    <!-- HEADER EDITORIAL FIXO DO FINPAY -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="12dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvHeaderSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Henrique Paiva · Outubro 2026"
+                android:textSize="11sp"
+                android:textColor="@color/text_muted" />
+
+            <TextView
+                android:id="@+id/tvHeaderTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Visão geral"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
+        </LinearLayout>
+
+        <!-- Botão Modo Privacidade (Ocultar Saldos) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPrivacyToggle"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Saldos"
+            android:textSize="11sp"
+            android:textAllCaps="false"
+            android:textColor="@color/text_primary"
+            app:strokeColor="@color/card_border"
+            app:cornerRadius="20dp"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Botão + Lançar -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddTransaction"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="+ Lançar"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/text_primary"
+            app:cornerRadius="20dp" />
+    </LinearLayout>
+
+    <!-- ÁREA CENTRAL ROLÁVEL COM AS 5 ABAS DO FINPAY -->
+    <ScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="24dp">
+
+            <!-- ========================================================= -->
+            <!-- ABA 1: INÍCIO (VISÃO GERAL DO FINPAY)                     -->
+            <!-- ========================================================= -->
+            <LinearLayout
+                android:id="@+id/viewTabHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <!-- Card Principal: Saldo Total Disponível + Contas + Balanço -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="1dp"
+                    app:strokeColor="@color/card_border"
+                    app:strokeWidth="1dp"
+                    app:cardBackgroundColor="@color/card_bg"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="SALDO TOTAL DISPONÍVEL"
+                                android:textSize="11sp"
+                                android:textStyle="bold"
+                                android:letterSpacing="0.06"
+                                android:textColor="@color/text_muted" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="C++17 Core"
+                                android:textSize="10sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/brand_green_primary"
+                                android:background="@color/brand_emerald_light"
+                                android:paddingHorizontal="8dp"
+                                android:paddingVertical="3dp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvTotalBalance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="R$ 17.612,80"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="16dp" />
+
+                        <!-- Mini-Cards das 2 Contas (Nubank & BTG) -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="16dp">
+
+                            <LinearLayout
+                                android:id="@+id/cardAccount1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:background="@color/bg_paper"
+                                android:padding="12dp"
+                                android:layout_marginEnd="6dp">
+
+                                <TextView
+                                    android:id="@+id/tvAcc1Name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="● Nubank Corrente"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Conta corrente · Toque p/ editar"
+                                    android:textSize="10sp"
+                                    android:textColor="@color/text_muted"
+                                    android:layout_marginTop="2dp" />
+
+                                <TextView
+                                    android:id="@+id/tvAcc1Balance"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="R$ 3.060,00"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary"
+                                    android:layout_marginTop="6dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/cardAccount2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:background="@color/bg_paper"
+                                android:padding="12dp"
+                                android:layout_marginStart="6dp">
+
+                                <TextView
+                                    android:id="@+id/tvAcc2Name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="● Reserva BTG Selic"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Investimentos · Toque p/ editar"
+                                    android:textSize="10sp"
+                                    android:textColor="@color/text_muted"
+                                    android:layout_marginTop="2dp" />
+
+                                <TextView
+                                    android:id="@+id/tvAcc2Balance"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="R$ 14.552,80"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary"
+                                    android:layout_marginTop="6dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/card_border"
+                            android:layout_marginBottom="12dp" />
+
+                        <!-- Resumo Receitas / Despesas / Balanço -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="↙ Receitas"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/text_muted" />
+
+                                <TextView
+                                    android:id="@+id/tvMonthIncome"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="R$ 1.633,00"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/success_green"
+                                    android:layout_marginTop="2dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="↗ Despesas"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/text_muted" />
+
+                                <TextView
+                                    android:id="@+id/tvMonthExpense"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="R$ 1.889,90"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary"
+                                    android:layout_marginTop="2dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="∿ Balanço"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/text_muted" />
+
+                                <TextView
+                                    android:id="@+id/tvMonthNet"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="-R$ 256,90"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/danger_red"
+                                    android:layout_marginTop="2dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Card Salário CLT Recorrente (Calculado pelo PayrollCalculator.cpp + DateEngine.cpp) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="1dp"
+                    app:strokeColor="@color/card_border"
+                    app:strokeWidth="1dp"
+                    app:cardBackgroundColor="@color/card_bg"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="18dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginEnd="12dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="SALÁRIO CLT"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_muted" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Automático"
+                                    android:singleLine="true"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/success_green"
+                                    android:background="@color/brand_emerald_light"
+                                    android:paddingHorizontal="6dp"
+                                    android:paddingVertical="2dp"
+                                    android:layout_marginStart="6dp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tvHomePayrollNet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Líquido: R$ 4.735,75"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/success_green"
+                                android:layout_marginTop="4dp" />
+
+                            <TextView
+                                android:id="@+id/tvHomePayrollSummary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Bruto R$ 5.800,00 · Descontos -R$ 1.064,25 · Crédito 30/10/2026"
+                                android:textSize="11sp"
+                                android:textColor="@color/text_secondary"
+                                android:layout_marginTop="3dp" />
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnOpenPayrollModal"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:text="Holerite →"
+                            android:textSize="12sp"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary"
+                            app:strokeColor="@color/card_border"
+                            app:cornerRadius="16dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- 2 Cards Lado a Lado: Contas a Pagar & Valores a Receber -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="1dp"
+                        app:strokeColor="@color/card_border"
+                        app:strokeWidth="1dp"
+                        app:cardBackgroundColor="@color/card_bg"
+                        android:layout_marginEnd="6dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Contas fixas do mês"
+                                android:textSize="11sp"
+                                android:textColor="@color/text_muted" />
+
+                            <TextView
+                                android:id="@+id/tvFixedBills"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R$ 1.019,90"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/text_primary"
+                                android:layout_marginTop="6dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Despesas recorrentes"
+                                android:textSize="10sp"
+                                android:textColor="@color/text_muted"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="1dp"
+                        app:strokeColor="@color/card_border"
+                        app:strokeWidth="1dp"
+                        app:cardBackgroundColor="@color/card_bg"
+                        android:layout_marginStart="6dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Valores a receber"
+                                android:textSize="11sp"
+                                android:textColor="@color/text_muted" />
+
+                            <TextView
+                                android:id="@+id/tvExpectedReceivables"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R$ 4.735,75"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/success_green"
+                                android:layout_marginTop="6dp" />
+
+                            <TextView
+                                android:id="@+id/tvReceivablesDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Salário líquido no último dia útil"
+                                android:textSize="10sp"
+                                android:textColor="@color/text_muted"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <!-- Card de Alerta Rápido de Orçamento -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="1dp"
+                    app:strokeColor="@color/card_border"
+                    app:strokeWidth="1dp"
+                    app:cardBackgroundColor="@color/card_bg">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="⚠ Monitoramento de orçamento neste mês"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary" />
+
+                        <TextView
+                            android:id="@+id/tvHomeBudgetAlert"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Alimentação: 60% consumido (R$ 540,00 / R$ 900,00)"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_secondary"
+                            android:layout_marginTop="4dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- ========================================================= -->
+            <!-- ABA 2: EXTRATO DE TRANSAÇÕES                              -->
+            <!-- ========================================================= -->
+            <LinearLayout
+                android:id="@+id/viewTabTransactions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Filtros de Extrato -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFilterAll"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:text="Todos"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:layout_marginEnd="4dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFilterIncome"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:text="Entradas"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:layout_marginHorizontal="4dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnFilterExpense"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:text="Saídas"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:layout_marginStart="4dp" />
+                </LinearLayout>
+
+                <!-- Lista Dinâmica de Transações -->
+                <LinearLayout
+                    android:id="@+id/llTransactionsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- ========================================================= -->
+            <!-- ABA 3: ORÇAMENTO POR CATEGORIA                            -->
+            <!-- ========================================================= -->
+            <LinearLayout
+                android:id="@+id/viewTabBudget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="1dp"
+                    app:strokeColor="@color/card_border"
+                    app:strokeWidth="1dp"
+                    app:cardBackgroundColor="@color/card_bg"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TETO DE GASTOS DO MÊS"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_muted" />
+
+                        <TextView
+                            android:id="@+id/tvBudgetOverview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="R$ 1.889,90 de R$ 3.000,00"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginTop="4dp" />
+
+                        <ProgressBar
+                            android:id="@+id/pbTotalBudget"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:max="100"
+                            android:progress="63"
+                            android:progressTint="@color/brand_green_primary"
+                            android:layout_marginTop="12dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:id="@+id/llBudgetCategoriesList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- ========================================================= -->
+            <!-- ABA 4: DÍVIDAS & SIMULADOR AVALANCHE VS BOLA DE NEVE C++  -->
+            <!-- ========================================================= -->
+            <LinearLayout
+                android:id="@+id/viewTabDebts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Simulador Estratégico em C++ -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="1dp"
+                    app:strokeColor="@color/card_border"
+                    app:strokeWidth="1dp"
+                    app:cardBackgroundColor="@color/card_bg"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SIMULADOR DE QUITAÇÃO ANTECIPADA (C++ ENGINE)"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/brand_green_primary" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Avalanche vs. Bola de Neve"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="12dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="12dp">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="Aporte Extra Mensal (R$)"
+                                android:layout_marginEnd="10dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etExtraDebtPayment"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="numberDecimal"
+                                    android:text="400.00" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnSimulateDebts"
+                                android:layout_width="wrap_content"
+                                android:layout_height="52dp"
+                                android:text="Simular C++"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:backgroundTint="@color/brand_green_primary"
+                                app:cornerRadius="12dp" />
+                        </LinearLayout>
+
+                        <!-- Resultado Comparativo C++ -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:background="@color/brand_emerald_light"
+                                android:padding="12dp"
+                                android:layout_marginEnd="6dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="🔥 Método Avalanche"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/brand_green_primary" />
+
+                                <TextView
+                                    android:id="@+id/tvAvalancheResult"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Economia: R$ 0,00"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary"
+                                    android:layout_marginTop="4dp" />
+
+                                <TextView
+                                    android:id="@+id/tvAvalancheMonths"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Prazo: 0 meses"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/text_secondary"
+                                    android:layout_marginTop="2dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:background="@color/bg_paper"
+                                android:padding="12dp"
+                                android:layout_marginStart="6dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="❄️ Bola de Neve"
+                                    android:textSize="12sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary" />
+
+                                <TextView
+                                    android:id="@+id/tvSnowballResult"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Economia: R$ 0,00"
+                                    android:textSize="13sp"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/text_primary"
+                                    android:layout_marginTop="4dp" />
+
+                                <TextView
+                                    android:id="@+id/tvSnowballMonths"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Prazo: 0 meses"
+                                    android:textSize="11sp"
+                                    android:textColor="@color/text_secondary"
+                                    android:layout_marginTop="2dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Contratos Ativos com Raio-X Price/SAC em C++ -->
+                <LinearLayout
+                    android:id="@+id/llDebtsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- ========================================================= -->
+            <!-- ABA 5: METAS & MERCADO (RENDA FIXA EM C++)                -->
+            <!-- ========================================================= -->
+            <LinearLayout
+                android:id="@+id/viewTabGoals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Header de Atualização de APIs -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="BOLETIM BCB &amp; MERCADO"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.06"
+                            android:textColor="@color/text_muted" />
+
+                        <TextView
+                            android:id="@+id/tvMarketLastUpdated"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="BrasilAPI &amp; AwesomeAPI"
+                            android:textSize="11sp"
+                            android:textColor="@color/text_secondary"
+                            android:layout_marginTop="1dp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRefreshMarketRates"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:text="⟳ Atualizar"
+                        android:textSize="11sp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/brand_green_primary"
+                        app:strokeColor="@color/brand_green_primary"
+                        app:cornerRadius="16dp" />
+                </LinearLayout>
+
+                <!-- Boletim Diário BCB (Selic, CDI, IPCA, Dólar) - 4 Cards em 2 Linhas -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="18dp"
+                        app:cardElevation="1dp"
+                        app:strokeColor="@color/card_border"
+                        app:strokeWidth="1dp"
+                        app:cardBackgroundColor="@color/card_bg"
+                        android:layout_marginEnd="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Taxa Selic"
+                                android:textSize="11sp"
+                                android:textColor="@color/text_muted" />
+
+                            <TextView
+                                android:id="@+id/tvSelicRate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="13,75%"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/text_primary"
+                                android:layout_marginTop="2dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ao ano"
+                                android:textSize="10sp"
+                                android:textColor="@color/text_muted" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="18dp"
+                        app:cardElevation="1dp"
+                        app:strokeColor="@color/card_border"
+                        app:strokeWidth="1dp"
+                        app:cardBackgroundColor="@color/card_bg"
+                        android:layout_marginStart="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="CDI Oficial"
+                                android:textSize="11sp"
+                                android:textColor="@color/text_muted" />
+
+                            <TextView
+                                android:id="@+id/tvCdiRate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="13,65%"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/text_primary"
+                                android:layout_marginTop="2dp" />
+
+                            <TextView
+                                android:id="@+id/tvCdiMonthly"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1,07% ao mês"
+                                android:textSize="10sp"
+                                android:textColor="@color/text_muted" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="14dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="18dp"
+                        app:cardElevation="1dp"
+                        app:strokeColor="@color/card_border"
+                        app:strokeWidth="1dp"
+                        app:cardBackgroundColor="@color/card_bg"
+                        android:layout_marginEnd="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="IPCA (12 meses)"
+                                android:textSize="11sp"
+                                android:textColor="@color/text_muted" />
+
+                            <TextView
+                                android:id="@+id/tvIpcaRate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="4,58%"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/text_primary"
+                                android:layout_marginTop="2dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="inflação oficial"
+                                android:textSize="10sp"
+                                android:textColor="@color/text_muted" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="18dp"
+                        app:cardElevation="1dp"
+                        app:strokeColor="@color/card_border"
+                        app:strokeWidth="1dp"
+                        app:cardBackgroundColor="@color/card_bg"
+                        android:layout_marginStart="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dólar Comercial"
+                                android:textSize="11sp"
+                                android:textColor="@color/text_muted" />
+
+                            <TextView
+                                android:id="@+id/tvUsdRate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R$ 5,04"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/text_primary"
+                                android:layout_marginTop="2dp" />
+
+                            <TextView
+                                android:id="@+id/tvUsdChange"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="+0,38% hoje"
+                                android:textSize="10sp"
+                                android:textColor="@color/success_green" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <!-- Simulador de Rendimento Líquido em C++ -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="1dp"
+                    app:strokeColor="@color/card_border"
+                    app:strokeWidth="1dp"
+                    app:cardBackgroundColor="@color/card_bg"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Simulador de rendimento líquido (C++)"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_primary" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Compare quanto qualquer valor rende hoje (já descontando Imposto de Renda):"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_secondary"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="12dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="14dp">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="Valor aplicado (R$)"
+                                android:layout_marginEnd="10dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etInvestedAmount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="numberDecimal"
+                                    android:text="10000.00" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnSimulateYield"
+                                android:layout_width="wrap_content"
+                                android:layout_height="52dp"
+                                android:text="Calcular"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:backgroundTint="@color/brand_green_primary"
+                                app:cornerRadius="12dp" />
+                        </LinearLayout>
+
+                        <!-- Linhas de Retorno Líquido -->
+                        <TextView
+                            android:id="@+id/tvSimSelic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tesouro Selic / CDB 100% CDI: +R$ 88,50/mês"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/success_green"
+                            android:layout_marginBottom="8dp" />
+
+                        <TextView
+                            android:id="@+id/tvSimLci"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="LCI / LCA Isenta de IR (92% CDI): +R$ 98,60/mês"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/brand_green_primary"
+                            android:layout_marginBottom="8dp" />
+
+                        <TextView
+                            android:id="@+id/tvSimPoupanca"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Poupança Tradicional: +R$ 56,30/mês"
+                            android:textSize="13sp"
+                            android:textColor="@color/text_secondary" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Lista de Metas Financeiras com Juros Compostos em C++ -->
+                <LinearLayout
+                    android:id="@+id/llGoalsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <!-- Status Técnico do Motor Nativo -->
+            <TextView
+                android:id="@+id/tvNativeStatusFooter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Motor C++17 NDK"
+                android:textSize="11sp"
+                android:textColor="@color/text_muted"
+                android:layout_marginTop="16dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- BARRA DE NAVEGAÇÃO INFERIOR CLÁSSICA DO FINPAY (5 ABAS) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:background="@color/card_bg"
+        android:elevation="12dp"
+        android:paddingHorizontal="4dp"
+        android:gravity="center_vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/navBtnHome"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="2dp"
+            android:text="Início"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            app:cornerRadius="12dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/navBtnTransactions"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="2dp"
+            android:text="Extrato"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            app:cornerRadius="12dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/navBtnBudget"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="2dp"
+            android:text="Orçamento"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            app:cornerRadius="12dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/navBtnDebts"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="2dp"
+            android:text="Dívidas"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            app:cornerRadius="12dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/navBtnGoals"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="2dp"
+            android:text="Metas"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            app:cornerRadius="12dp" />
+    </LinearLayout>
+
+</LinearLayout>
